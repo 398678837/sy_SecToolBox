@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from gui.tool_windows import PortScannerWindow
+from gui.tool_windows import PortScannerWindow, IPLocationWindow
 
 class MainWindow:
     def __init__(self, root):
@@ -32,8 +32,8 @@ class MainWindow:
         self.port_scan_btn = ttk.Button(self.nav_frame, text="端口扫描器", width=20, command=self.open_port_scanner)
         self.port_scan_btn.pack(pady=2)
         
-        # 占位按钮，后续会添加其他工具
-        ttk.Button(self.nav_frame, text="IP归属地查询", width=20, state=tk.DISABLED).pack(pady=2)
+        self.ip_location_btn = ttk.Button(self.nav_frame, text="IP归属地查询", width=20, command=self.open_ip_location)
+        self.ip_location_btn.pack(pady=2)
         ttk.Button(self.nav_frame, text="DNS解析查询", width=20, state=tk.DISABLED).pack(pady=2)
         ttk.Button(self.nav_frame, text="局域网存活主机探测", width=20, state=tk.DISABLED).pack(pady=2)
         
@@ -74,3 +74,14 @@ class MainWindow:
         
         # 更新状态栏
         self.status_label.config(text="端口扫描器已打开")
+    
+    def open_ip_location(self):
+        # 清空工作区
+        for widget in self.work_frame.winfo_children():
+            widget.destroy()
+        
+        # 创建IP归属地查询窗口
+        IPLocationWindow(self.work_frame)
+        
+        # 更新状态栏
+        self.status_label.config(text="IP归属地查询已打开")
