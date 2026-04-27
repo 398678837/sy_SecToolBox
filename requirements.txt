@@ -1,0 +1,6 @@
+# sy_SecToolBox 依赖文件
+# 基础依赖
+# 目前仅使用Python标准库，无需额外依赖
+# 后续功能可能需要添加以下依赖：
+# requests==2.31.0
+# pyinstaller==6.0.0
